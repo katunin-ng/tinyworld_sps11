@@ -10,20 +10,25 @@ function saveCountry(country) {
 	stmt.close();
 	conn.commit();
 	conn.close();
+	
 	if (result) {
-		return result;
+		return {body : result,
+			status: $.net.http.BAD_REQUEST
+		};
 	} else {
-		return output;
+		
+		return {body : output,
+			status: $.net.http.CREATED
+		};
 	}
 }
 
-var country = {
-	name: $.request.parameters.get("name"),
-	partof: $.request.parameters.get("continent")
-};
-// validate the inputs here!
+var body = $.request.body.asString();
+var country = JSON.parse(body);
 
 var output = saveCountry(country);
 
 $.response.contentType = "application/json";
-$.response.setBody(output);
+$.response.setBody(output.body);
+$.response.status = output.status;
+
