@@ -1,0 +1,9 @@
+{
+	"name": "tinyui-approuter",
+	"dependencies": {
+		"approuter": "1.3.5"
+	},
+	"scripts": {
+		"start": "node node_modules/approuter/approuter.js"
+	}
+}
