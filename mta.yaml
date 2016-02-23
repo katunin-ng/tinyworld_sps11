@@ -15,6 +15,7 @@ modules:
   path: tinyjs
   # ------- dependency on DB  
   requires:
+  - name: tiny_uaa
   - name: tinydb
   - name: hdi-container
   #---------------- exposes SERVICE URL to consumers
@@ -29,13 +30,19 @@ modules:
   path: tinyui
   # -- requires tinyjs service URL
   requires:
+     - name: tiny_uaa
      - name: tinyjs_api
        group: destinations 
        properties:
           name: tinyjs_be 
           url:  ~{service_url}
+          forwardAuthToken: true
 
 
 resources:
 - name: hdi-container
   type: com.sap.xs.hdi-container
+  
+- name: tiny_uaa
+  type: com.sap.xs.uaa
+
