@@ -1,5 +1,5 @@
 var oFirstDialog;
-
+// some comment
 function openFirstDialog() {
 	if (oFirstDialog) {
 		oFirstDialog.open();
